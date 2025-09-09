@@ -1,0 +1,293 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <title>Candle Blow</title>
+    <link rel="icon" href="bidday.jpg" type="image/x-icon">
+    <style>
+        body {
+    width: 1280px; 
+    height: 720px; 
+    margin: 0 auto; 
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb);
+    background-size: 400% 400%;
+    animation: gradientFlow 10s ease infinite;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    overflow: hidden;
+    position: relative;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+        
+        .cake {
+            position: absolute;
+            width: 250px;
+            height: 200px;
+            top: 300px;  
+            left: 515px; 
+        }
+
+        .plate {
+            width: 500px;
+            height: 110px;
+            position: absolute;
+            bottom: -5px;
+            left: -120px;
+            background-color: #ccc;
+            border-radius: 50%;
+            box-shadow: 0 2px 0 #b3b3b3, 0 4px 0 #b3b3b3, 0 5px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .cake > * {
+            position: absolute;
+        }
+
+        .layer {
+            display: block;
+            width: 250px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #553c13;
+            box-shadow: 0 2px 0px #6a4b18, 0 4px 0px #33240b, 0 6px 0px #32230b, 0 8px 0px #31230b, 
+                        0 10px 0px #30220b, 0 12px 0px #2f220b, 0 14px 0px #2f210a, 0 16px 0px #2e200a, 
+                        0 18px 0px #2d200a, 0 20px 0px #2c1f0a, 0 22px 0px #2b1f0a, 0 24px 0px #2a1e09, 
+                        0 26px 0px #2a1d09, 0 28px 0px #291d09, 0 30px 0px #281c09;
+        }
+
+        .layer-top { top: 0px; }
+        .layer-middle { top: 33px; }
+        .layer-bottom { top: 66px; }
+
+        .icing {
+            top: 2px;
+            left: 5px;
+            background-color: #f0e4d0;
+            width: 240px;
+            height: 90px;
+            border-radius: 50%;
+        }
+        .icing:before {
+            content: "";
+            position: absolute;
+            top: 4px;
+            right: 5px;
+            bottom: 6px;
+            left: 5px;
+            background-color: #f4ebdc;
+            box-shadow: 0 0 4px #f6efe3, 0 0 4px #f6efe3, 0 0 4px #f6efe3;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .drip {
+            display: block;
+            width: 50px;
+            height: 60px;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            background-color: #f0e4d0;
+        }
+        .drip1 {
+            top: 53px;
+            left: 5px;
+            transform: skewY(15deg);
+            height: 48px;
+            width: 40px;
+        }
+        .drip2 {
+            top: 69px;
+            left: 181px;
+            transform: skewY(-15deg);
+        }
+        .drip3 {
+            top: 54px;
+            left: 90px;
+            width: 80px;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
+
+        .candle {
+            background-color: #7B020B;
+            width: 12px;
+            height: 35px;
+            border-radius: 6px/3px;
+            top: -20px;
+            left: 50%;
+            margin-left: -8px;
+            z-index: 10;
+        }
+        .candle:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #ad030f;
+        }
+
+        .candle.out .flame {
+            display: none;
+        }
+
+        .flame {
+            position: absolute;
+            background-color: orange;
+            width: 10px;
+            height: 25px;
+            border-radius: 8px 8px 8px 8px/20px 20px 8px 8px;
+            top: -34px;
+            left: 50%;
+            margin-left: -7.5px;
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.5), 0 0 20px rgba(255, 165, 0, 0.5),
+                        0 0 60px rgba(255, 165, 0, 0.5), 0 0 80px rgba(255, 165, 0, 0.5);
+            transform-origin: 50% 90%;
+            animation: flicker 1s ease-in-out alternate infinite;
+        }
+
+        @keyframes flicker {
+            0% { transform: skewX(5deg); }
+            25% { transform: skewX(-5deg); }
+            50% { transform: skewX(10deg); }
+            75% { transform: skewX(-10deg); }
+            100% { transform: skewX(5deg); }
+        }
+
+        .message {
+            color: black;
+            font-size: 0.7em;
+            position: absolute;
+            margin-bottom: 100%;
+            top: 100px; 
+            left: 340px; 
+            width: 600px;
+            text-align: center;
+            background-color: transparent;
+            border: ridge red 1px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        <h1>HAPPY BIRTHDAY CINDY! ♥</h1>
+        <p>Please place a candle on top of the cake, then blow it out through your microphone.</p>
+        <p>
+        <a href="message.html" style="
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #ff69b4;
+            border: solid red 0.2px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        ">Read My Message</a>
+    </p>
+    </div>
+    <Center>
+    <p id="f1">
+  <small>
+   ------------------MADE BY RISH-------------------
+  </small>
+</p>
+</Center>
+
+    <div class="cake">
+        <div class="plate"></div>
+        <div class="layer layer-bottom"></div>
+        <div class="layer layer-middle"></div>
+        <div class="layer layer-top"></div>
+        <div class="icing"></div>
+        <div class="drip drip1"></div>
+        <div class="drip drip2"></div>
+        <div class="drip drip3"></div>
+    </div>
+
+    <audio id="backgroundAudio" src="bday.mp3" autoplay loop></audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cake = document.querySelector(".cake");
+            let candles = [];
+            let audioContext;
+            let analyser;
+            let microphone;
+
+            function addCandle(left, top) {
+                const candle = document.createElement("div");
+                candle.className = "candle";
+                candle.style.left = left + "px";
+                candle.style.top = top + "px";
+
+                const flame = document.createElement("div");
+                flame.className = "flame";
+                candle.appendChild(flame);
+
+                cake.appendChild(candle);
+                candles.push(candle);
+            }
+
+            cake.addEventListener("click", function (event) {
+                const rect = cake.getBoundingClientRect();
+                const left = event.clientX - rect.left;
+                const top = event.clientY - rect.top;
+                addCandle(left, top);
+            });
+
+            function isBlowing() {
+                const bufferLength = analyser.frequencyBinCount;
+                const dataArray = new Uint8Array(bufferLength);
+                analyser.getByteFrequencyData(dataArray);
+
+                let sum = 0;
+                for (let i = 0; i < bufferLength; i++) {
+                    sum += dataArray[i];
+                }
+                let average = sum / bufferLength;
+                return average > 40;
+            }
+
+            function blowOutCandles() {
+                if (isBlowing()) {
+                    candles.forEach((candle) => {
+                        if (!candle.classList.contains("out") && Math.random() > 0.5) {
+                            candle.classList.add("out");
+                        }
+                    });
+                }
+            }
+
+            if (navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices
+                    .getUserMedia({ audio: true })
+                    .then(function (stream) {
+                        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        analyser = audioContext.createAnalyser();
+                        microphone = audioContext.createMediaStreamSource(stream);
+                        microphone.connect(analyser);
+                        analyser.fftSize = 256;
+                        setInterval(blowOutCandles, 200);
+                    })
+                    .catch(function (err) {
+                        console.log("Unable to access microphone: " + err);
+                    });
+            } else {
+                console.log("getUserMedia not supported on your browser!");
+            }
+        });
+    </script>
+
+  
+
+</body>
+</html>

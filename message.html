@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<a href="index.html" 
+   style="
+       position: absolute;
+       top: 20px;
+       left: 20px;
+       padding: 10px 15px;
+       background-color: transparent;
+       color: rgb(20, 20, 20);
+       text-decoration: none;
+       border: 1px solid black;
+       border-radius: 5px;
+       font-weight: bold;
+   ">
+   ← Go Back
+</a>
+
+<title>Birthday Envelope</title>
+<style>
+:root {
+  --primary: #ffffff;
+  --bg1: #ffefba;
+  --bg2: #ffffff;
+  --bg-envelope-color: #f5d1f1;
+  --envelope-tab: khaki;
+  --envelope-cover: beige;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --txt-color: #444;
+  --heart-color: rgb(242, 47, 203);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, var(--bg1) 0%, #ffdfe8 40%, #c8f7ff 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.container {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.envelope-wrapper {
+  background: var(--bg-envelope-color);
+  box-shadow: 0 0 40px var(--shadow-color);
+  position: relative;
+  z-index: 10;
+}
+
+.envelope {
+  position: relative;
+  width: 300px;
+  height: 230px;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  border-top: 130px solid var(--envelope-tab);
+  border-right: 150px solid transparent;
+  border-left: 150px solid transparent;
+  transform-origin: top;
+  transition: all 0.5s ease-in-out 0.7s;
+}
+
+.envelope::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  border-top: 130px solid transparent;
+  border-right: 150px solid var(--envelope-cover);
+  border-bottom: 100px solid var(--envelope-cover);
+  border-left: 150px solid var(--envelope-cover);
+}
+
+.letter {
+  position: absolute;
+  right: 20%;
+  bottom: 0;
+  width: 54%;
+  height: 80%;
+  background: transparent;
+  text-align: center;
+  transition: all 1s ease-in-out;
+  box-shadow: 0 0 5px var(--shadow-color);
+  padding: 20px 10px;
+}
+
+.letter .text {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: var(--txt-color);
+  text-align: left;
+  font-size: 8px;
+}
+
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  background: var(--heart-color);
+  z-index: 4;
+  transform: translate(-50%, -20%) rotate(45deg);
+  transition: transform 0.5s ease-in-out 1s;
+  box-shadow: 0 1px 6px var(--shadow-color);
+  cursor: pointer;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: var(--heart-color);
+  border-radius: 50%;
+}
+
+.heart:before { top: -7.5px; }
+.heart:after { right: 7.5px; }
+
+.flap .envelope::before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.flap .envelope .letter {
+  bottom: 100px;
+  transform: scale(1.5);
+  transition-delay: 1s;
+}
+
+.flap .heart {
+  transform: rotate(90deg);
+  transition-delay: 0.4s;
+}
+
+/* Balloon background */
+#balloonBg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<div id="balloonBg"></div>
+
+<main class="content" role="main">
+  <div class="container">
+    <div class="envelope-wrapper">
+      <div class="envelope">
+        <div class="letter">
+          <div class="text">
+            <strong>HI CINDY!</strong>
+            <p>
+              Just want to greet you a happy, happy birthday!... Matagal-tagal na rin, hope you’re doing great. Wish ko sayo, matupad mo lahat ng dreams mo in life and happy lang lagi, and enjoy your day! ♥
+
+              <br>
+              <br>
+              <br>
+              <br>
+              nagmamahal,
+              <br>
+              Rish
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="heart"></div>
+    </div>
+  </div>
+</main>
+
+<script>
+const envelope = document.querySelector('.envelope-wrapper');
+const balloonBg = document.getElementById('balloonBg');
+
+envelope.addEventListener('click', () => {
+  envelope.classList.toggle('flap');
+
+  for (let i = 0; i < 12; i++) {
+    const balloon = document.createElement('div');
+    balloon.style.position = 'absolute';
+    balloon.style.width = '40px';
+    balloon.style.height = '50px';
+    balloon.style.borderRadius = '50%';
+    balloon.style.background = ['#ff6f91','#ff9671','#ffc75f','#f9f871'][Math.floor(Math.random()*4)];
+    balloon.style.left = Math.random() * window.innerWidth + 'px';
+    balloon.style.bottom = '-60px';
+    balloon.style.opacity = '0.8';
+    balloon.style.animation = `float ${Math.random() * 3 + 3}s ease-in forwards`;
+    balloon.style.zIndex = '0';
+    balloonBg.appendChild(balloon);
+
+    setTimeout(() => balloon.remove(), 6000);
+  }
+
+  
+});
+
+
+</script>
+
+</body>
+</html>
